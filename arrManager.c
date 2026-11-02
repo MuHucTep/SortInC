@@ -37,3 +37,22 @@ int* createRandArr(size_t size, int randMin, int randMax) {
 
     return arr;
 }
+
+// Алгоритм простейшей сортировки
+
+int* stupidSortASC(int *arr, size_t size) {
+    if (arr == NULL || size < 2) {
+        return arr;
+    }
+
+    int tmp;
+
+    for (int i = 0; i < size - 1; i++) {
+        if (arr[i] > arr[i+1]) {
+        tmp = arr[i+1]; arr[i+1] = arr[i]; arr[i] = tmp;
+        i = -1;
+        }
+    }
+
+    return arr;
+}
