@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include <mylib.h>
+#include "mylib.h"
 
 int main() {
     size_t count = 20;
