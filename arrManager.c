@@ -80,3 +80,24 @@ int* bubbleSortASC(int *arr, size_t size) {
 
     return arr;
 }
+
+// Идея алгоритма упорядочения вставками
+
+int* InsertionSortASC(int *arr, size_t size) {
+    if (arr == NULL || size < 2) {
+        return arr;
+    }
+
+    for (size_t i = 1; i < size; i++) {
+        int key = arr[i];
+        size_t j = i;
+
+        while (j > 0 && arr[j - 1] > key) {
+            arr[j] = arr[j - 1];
+            j--;
+        }
+        arr[j] = key;
+    }
+    return arr;
+}
+
