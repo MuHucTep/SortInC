@@ -83,7 +83,7 @@ int* bubbleSortASC(int *arr, size_t size) {
 
 // Идея алгоритма упорядочения вставками
 
-int* InsertionSortASC(int *arr, size_t size) {
+int* insertionSortASC(int *arr, size_t size) {
     if (arr == NULL || size < 2) {
         return arr;
     }
@@ -101,3 +101,28 @@ int* InsertionSortASC(int *arr, size_t size) {
     return arr;
 }
 
+// Идея алгоритма упорядочения выбором
+
+int* selectionSortASC(int *arr, size_t size) {
+    if (arr == NULL || size < 2) {
+        return arr;
+    }
+
+    size_t maxIndex = 0;
+    size_t sortedPartIndex = size - 1;
+
+    for (int i = 0; sortedPartIndex > 0; i++) {
+        if (arr[i] > arr[maxIndex]) {
+            maxIndex = i;
+        }
+
+        if (i == (int)sortedPartIndex) {
+            int tmp = arr[sortedPartIndex]; arr[sortedPartIndex] = arr[maxIndex]; arr[maxIndex] = tmp;
+            sortedPartIndex--;
+            maxIndex = 0;
+            i = -1;
+        }
+    }
+
+    return arr;
+}
