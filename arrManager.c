@@ -83,7 +83,7 @@ int* bubbleSortASC(int *arr, size_t size) {
 
 // Идея алгоритма упорядочения вставками
 
-int* InsertionSortASC(int *arr, size_t size) {
+int* insertionSortASC(int *arr, size_t size) {
     if (arr == NULL || size < 2) {
         return arr;
     }
