@@ -7,5 +7,6 @@ int* stupidSortASC(int *arr, size_t size);
 int* bubbleSortASC(int *arr, size_t size);
 int* insertionSortASC(int *arr, size_t size);
 int* selectionSortASC(int *arr, size_t size);
+void mergeSortASC(int arr[], int left, int right);
 
 #endif
