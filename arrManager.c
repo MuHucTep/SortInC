@@ -56,3 +56,27 @@ int* stupidSortASC(int *arr, size_t size) {
 
     return arr;
 }
+
+// Идея алгоритма обменной сортировки
+
+int* bubbleSortASC(int *arr, size_t size) {
+    if (arr == NULL || size < 2) {
+        return arr;
+    }
+
+    bool needRepeat = true;
+    int tmp;
+
+    while (needRepeat) {
+        needRepeat = false;
+        for (size_t i = 0; i < size - 1; i++) {
+            if (arr[i] > arr[i+1]) {
+                tmp = arr[i+1]; arr[i+1] = arr[i]; arr[i] = tmp;
+                needRepeat = true;
+            }
+        }
+
+    }
+
+    return arr;
+}
