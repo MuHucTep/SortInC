@@ -6,7 +6,7 @@ int main() {
     size_t count = 1000;
     int *arr = createRandArr(count, -100, 100);
 
-    selectionSortASC(arr, count);
+    mergeSortASC(arr, 0, count - 1);
 
     for (size_t i = 0; i < count; i++) {
         printf("%d ", arr[i]);
