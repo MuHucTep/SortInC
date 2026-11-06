@@ -2,6 +2,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 #include "mylib.h"
 
@@ -13,13 +14,13 @@
         (double)(_end - _start) / CLOCKS_PER_SEC; \
     })
 
-void wrappedMergeSort(int *arr, size_t size) {
+int* wrappedMergeSort(int *arr, size_t size) {
     mergeSortASC(arr, 0, size - 1);
 }
 
-void (*mergeSortIndex)(int *, size_t) = wrappedMergeSort;
+int* (*mergeSortIndex)(int *, size_t) = wrappedMergeSort;
 
-typedef void (*SortFunc)(int *arr, size_t size);
+typedef int* (*SortFunc)(int *arr, size_t size);
 
 int main() {
     srand(time(NULL));
@@ -42,7 +43,7 @@ int main() {
 
         if (arr != NULL) {
             double t = MEASURE_TIME(sortFuncs[i](arr, n));
-            bool isSorted = isSortedArrASC(arr, n);
+            bool isSorted = isSortedArr(arr, n);
             printf("Stupid sort\nStatus: %d\nDuration: %.6f sec.\n\n", isSorted, t);
         }
 
