@@ -36,6 +36,7 @@ int main() {
     size_t n;
     int min;
     int max;
+    size_t funcNum;
 
     printf("Enter count of elements in array:\n");
     if (scanf("%zu", &n) != 1) {
@@ -60,19 +61,27 @@ int main() {
         return 1;
     }
 
+    printf("Choose the func:\n1. stupid sort\n2. bubble sort\n3. insertion sort\n4. selection sort\n5. merge sort\n");
+    if(scanf("%zu", &funcNum) != 1) {
+        if (funcNum > 5 && funcNum < 1) {
+            printf("Error: there are only 5 funcs (choose 1, 2, 3, 4 or 5).\n");
+            return 1;
+        }
+        printf("Input error!\n");
+        return 1;
+    } 
+
     printf("Count of elements: %zu\nRange: from %d to %d\n\n", n, min, max);
 
-    for (size_t i = 0; i < 5; i++) {
-        int* arr = createRandArr(n, min, max);
+    int* arr = createRandArr(n, min, max);
 
-        if (arr != NULL) {
-            double t = MEASURE_TIME(sortFuncs[i](arr, n));
-            bool isSorted = isSortedArr(arr, n);
-            printf("Stupid sort\nStatus: %d\nDuration: %.6f sec.\n\n", isSorted, t);
-        }
-
-        free(arr);
+    if (arr != NULL) {
+        double t = MEASURE_TIME(sortFuncs[funcNum](arr, n));
+        bool isSorted = isSortedArr(arr, n);
+        printf("Stupid sort\nStatus: %d\nDuration: %.6f sec.\n\n", isSorted, t);
     }
+
+    free(arr);
     
     return 0;
 }
