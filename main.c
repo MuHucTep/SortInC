@@ -76,7 +76,7 @@ int main() {
     int* arr = createRandArr(n, min, max);
 
     if (arr != NULL) {
-        double t = MEASURE_TIME(sortFuncs[funcNum](arr, n));
+        double t = MEASURE_TIME(sortFuncs[funcNum - 1](arr, n));
         bool isSorted = isSortedArr(arr, n);
         printf("Stupid sort\nStatus: %d\nDuration: %.6f sec.\n\n", isSorted, t);
     }
