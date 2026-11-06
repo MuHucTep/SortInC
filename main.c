@@ -24,6 +24,14 @@ typedef void (*SortFunc)(int *arr, size_t size);
 int main() {
     srand(time(NULL));
 
+    SortFunc sortFuncs[] = {
+        stupidSortASC,
+        bubbleSortASC,
+        insertionSortASC,
+        selectionSortASC,
+        wrappedMergeSort
+    };
+
     size_t n = 2048;
     int min = -1000;
     int max = 1000;
