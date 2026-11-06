@@ -33,10 +33,34 @@ int main() {
         wrappedMergeSort
     };
 
-    size_t n = 2048;
-    int min = -1000;
-    int max = 1000;
-    printf("Count of elements: %d\nRange: from %d to %d\n\n", n, min, max);
+    size_t n;
+    int min;
+    int max;
+
+    printf("Enter count of elements in array:\n");
+    if (scanf("%zu", &n) != 1) {
+        printf("Input error!\n");
+        return 1;
+    }
+
+    printf("Enter the maximum possible number for number generation in array:\n");
+    if (scanf("%d", &max) != 1) {
+        printf("Input error!\n");
+        return 1;
+    }
+
+    printf("Enter the minimum possible number for number generation in array:\n");
+    if (scanf("%d", &min) != 1) {
+        printf("Input error!\n");
+        return 1;
+    }
+
+    if (min > max) {
+        printf("Error: the minimum number is greater than maximum number.\n");
+        return 1;
+    }
+
+    printf("Count of elements: %zu\nRange: from %d to %d\n\n", n, min, max);
 
     for (size_t i = 0; i < 5; i++) {
         int* arr = createRandArr(n, min, max);
