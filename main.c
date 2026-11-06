@@ -19,6 +19,7 @@ void wrappedMergeSort(int *arr, size_t size) {
 
 void (*mergeSortIndex)(int *, size_t) = wrappedMergeSort;
 
+typedef void (*SortFunc)(int *arr, size_t size);
 
 int main() {
     srand(time(NULL));
