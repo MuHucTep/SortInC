@@ -44,14 +44,14 @@ int main() {
         return 1;
     }
 
-    printf("Enter the maximum possible number for number generation in array:\n");
-    if (scanf("%d", &max) != 1) {
+    printf("Enter the minimum possible number for number generation in array:\n");
+    if (scanf("%d", &min) != 1) {
         printf("Input error!\n");
         return 1;
     }
-
-    printf("Enter the minimum possible number for number generation in array:\n");
-    if (scanf("%d", &min) != 1) {
+    
+    printf("Enter the maximum possible number for number generation in array:\n");
+    if (scanf("%d", &max) != 1) {
         printf("Input error!\n");
         return 1;
     }
