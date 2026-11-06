@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdbool.h>
+#include <stddef.h>
 
 #include "mylib.h"
 
@@ -11,6 +12,12 @@
         clock_t _end = clock(); \
         (double)(_end - _start) / CLOCKS_PER_SEC; \
     })
+
+void wrappedMergeSort(int *arr, size_t size) {
+    mergeSortASC(arr, 0, size - 1);
+}
+
+void (*mergeSortIndex)(int *, size_t) = wrappedMergeSort;
 
 
 int main() {
