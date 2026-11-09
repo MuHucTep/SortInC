@@ -40,9 +40,9 @@ int* createRandArr(size_t size, int randMin, int randMax) {
 
 // Алгоритм простейшей сортировки
 
-int* stupidSortASC(int *arr, size_t size) {
+void stupidSortASC(int *arr, size_t size) {
     if (arr == NULL || size < 2) {
-        return arr;
+        return;
     }
 
     int tmp;
@@ -53,15 +53,13 @@ int* stupidSortASC(int *arr, size_t size) {
         i = -1;
         }
     }
-
-    return arr;
 }
 
 // Идея алгоритма обменной сортировки
 
-int* bubbleSortASC(int *arr, size_t size) {
+void bubbleSortASC(int *arr, size_t size) {
     if (arr == NULL || size < 2) {
-        return arr;
+        return;
     }
 
     bool needRepeat = true;
@@ -75,17 +73,14 @@ int* bubbleSortASC(int *arr, size_t size) {
                 needRepeat = true;
             }
         }
-
     }
-
-    return arr;
 }
 
 // Идея алгоритма упорядочения вставками
 
-int* insertionSortASC(int *arr, size_t size) {
+void insertionSortASC(int *arr, size_t size) {
     if (arr == NULL || size < 2) {
-        return arr;
+        return;
     }
 
     for (size_t i = 1; i < size; i++) {
@@ -98,14 +93,13 @@ int* insertionSortASC(int *arr, size_t size) {
         }
         arr[j] = key;
     }
-    return arr;
 }
 
 // Идея алгоритма упорядочения выбором
 
-int* selectionSortASC(int *arr, size_t size) {
+void selectionSortASC(int *arr, size_t size) {
     if (arr == NULL || size < 2) {
-        return arr;
+        return;
     }
 
     size_t maxIndex = 0;
@@ -123,8 +117,6 @@ int* selectionSortASC(int *arr, size_t size) {
             i = -1;
         }
     }
-
-    return arr;
 }
 
 // Идея алгоритма упорядочения слиянием
