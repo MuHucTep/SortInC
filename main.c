@@ -106,7 +106,6 @@ int main() {
     for (size_t i = 0; i < selectedCount; ++i) {
         size_t idx = selected[i];
 
-        // Делаем копию массива
         int *arr = malloc(n * sizeof(int));
         if (arr == NULL) {
             printf("Memory allocation error!\n");
