@@ -74,9 +74,13 @@ int main() {
     size_t num;
 
     printf("Select functions separated by spaces:\n");
+
+    // * list of funcs
     for (size_t i = 0; i < funcsCount; i++) {
         printf("%zu. %s\n", i + 1, funcNames[i]);
     }
+
+    // * Get funcs list
     while (selectedCount <= funcsCount && scanf("%zu", &num) == 1) {
         if (num >= 1 && num <= funcsCount) {
             selected[selectedCount++] = num - 1;
@@ -84,6 +88,7 @@ int main() {
             printf("Warning: function %zu does not exist (skipped)\n", num);
         }
 
+        // * Check end of choosing
         int c = getchar();
         if (c == '\n' || c == EOF) {
             break;
@@ -97,6 +102,7 @@ int main() {
 
     printf("\nCount of elements: %zu\nRange: from %d to %d\n\n", n, min, max);
 
+    // * Creating original array
     int *original = createRandArr(n, min, max);
     if (original == NULL) {
         printf("Memory allocation error!\n");
@@ -106,13 +112,14 @@ int main() {
     for (size_t i = 0; i < selectedCount; ++i) {
         size_t idx = selected[i];
 
-        // Делаем копию массива
+        // * Memory allocation for copy of orig. array
         int *arr = malloc(n * sizeof(int));
         if (arr == NULL) {
             printf("Memory allocation error!\n");
             free(original);
             return 1;
         }
+        // * Copy orig. array
         memcpy(arr, original, n * sizeof(int));
 
         double t = MEASURE_TIME(sortFuncs[idx](arr, n));
