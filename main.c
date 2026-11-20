@@ -38,19 +38,19 @@ int main() {
     int min, max;
 
     printf("Enter count of elements in array:\n");
-    if (scanf("%zu", &n) != 1) {
+    if (scanf_s("%zu", &n) != 1) {
         printf("Input error!\n");
         return 1;
     }
 
     printf("Enter the minimum possible number for number generation in array:\n");
-    if (scanf("%d", &min) != 1) {
+    if (scanf_s("%d", &min) != 1) {
         printf("Input error!\n");
         return 1;
     }
 
     printf("Enter the maximum possible number for number generation in array:\n");
-    if (scanf("%d", &max) != 1) {
+    if (scanf_s("%d", &max) != 1) {
         printf("Input error!\n");
         return 1;
     }
@@ -72,7 +72,7 @@ int main() {
     }
 
     // * Get funcs list
-    while (selectedCount <= funcsCount && scanf("%zu", &num) == 1) {
+    while (selectedCount <= funcsCount && scanf_s("%zu", &num) == 1) {
         if (num >= 1 && num <= funcsCount) {
             selected[selectedCount++] = num - 1;
         } else {
