@@ -1,18 +1,9 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
-#include <stddef.h>
 #include <stdlib.h>
 
 #include "mylib.h"
-
-#define MEASURE_TIME(func_call) \
-    ({ \
-        clock_t _start = clock(); \
-        func_call; \
-        clock_t _end = clock(); \
-        (double)(_end - _start) / CLOCKS_PER_SEC; \
-    })
 
 void wrappedMergeSort(int *arr, size_t size) {
     mergeSortASC(arr, 0, size - 1);
@@ -122,7 +113,12 @@ int main() {
         // * Copy orig. array
         memcpy(arr, original, n * sizeof(int));
 
-        double t = MEASURE_TIME(sortFuncs[idx](arr, n));
+        clock_t start = clock();
+        sortFuncs[idx](arr, n);
+        clock_t end = clock();
+
+        double t = (double) (end - start) / CLOCKS_PER_SEC;
+
         bool sorted = isSortedArr(arr, n);
 
         printf("%s\n", funcNames[idx]);
