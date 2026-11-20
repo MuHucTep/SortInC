@@ -25,7 +25,7 @@ int* createRandArr(size_t size, int randMin, int randMax) {
         return NULL;
     }
 
-    int *arr = (int*) malloc(size *sizeof(int));
+    int *arr = (int*) malloc(size * sizeof(int));
 
     if (arr == NULL) {
         return NULL;
@@ -144,7 +144,8 @@ void merge(int arr[], int left, int mid, int right) {
     int n2 = right - mid;
 
     // Создание подмассивов
-    int leftArr[n1], rightArr[n2];
+    int *leftArr = (int*) malloc(n1 * sizeof(int));
+    int *rightArr = (int*) malloc(n2 * sizeof(int));
 
     // Вставка данных в подмассивы
     for (i = 0; i < n1; i++)
