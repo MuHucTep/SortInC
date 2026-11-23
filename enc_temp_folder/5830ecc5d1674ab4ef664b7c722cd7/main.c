@@ -1,0 +1,139 @@
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+#include <stdlib.h>
+
+#include "mylib.h"
+
+void wrappedMergeSort(int *arr, size_t size) {
+    mergeSortASC(arr, 0, size - 1);
+}
+
+void (*mergeSortIndex)(int *, size_t) = wrappedMergeSort;
+
+typedef void (*SortFunc)(int *arr, size_t size);
+
+int main() {
+    srand(time(NULL));
+
+    const SortFunc sortFuncs[] = {
+        stupidSortASC,
+        bubbleSortASC,
+        insertionSortASC,
+        selectionSortASC,
+        wrappedMergeSort
+    };
+
+    const char *funcNames[] = {
+        "Stupid sort",
+        "Bubble sort",
+        "Insertion sort",
+        "Selection sort",
+        "Merge sort"
+    };
+
+    const size_t funcsCount = sizeof(sortFuncs) / sizeof(sortFuncs[0]);
+
+    int size;
+    int min, max;
+
+    printf("Enter count of elements in array:\n");
+    if (scanf_s("%zu", &size) != 1) {
+        printf("Input error!\n");
+        return 1;
+    }
+    else if (size < 0) {
+        printf("Input error!\n");
+        return 1;
+    }
+
+    size_t n = (size_t) size;
+
+    printf("Enter the minimum possible number for number generation in array:\n");
+    if (scanf_s("%d", &min) != 1) {
+        printf("Input error!\n");
+        return 1;
+    }
+
+    printf("Enter the maximum possible number for number generation in array:\n");
+    if (scanf_s("%d", &max) != 1) {
+        printf("Input error!\n");
+        return 1;
+    }
+
+    if (min > max) {
+        printf("Error: the minimum number is greater than maximum number.\n");
+        return 1;
+    }
+
+    size_t selected[32];
+    size_t selectedCount = 0;
+    size_t num;
+
+    printf("Select functions separated by spaces:\n");
+
+    // * list of funcs
+    for (size_t i = 0; i < funcsCount; i++) {
+        printf("%zu. %s\n", i + 1, funcNames[i]);
+    }
+
+    // * Get funcs list
+    while (selectedCount <= funcsCount && scanf_s("%zu", &num) == 1) {
+        if (num >= 1 && num <= funcsCount) {
+            selected[selectedCount++] = num - 1;
+        } else {
+            printf("Warning: function %zu does not exist (skipped)\n", num);
+        }
+
+        // * Check end of choosing
+        int c = getchar();
+        if (c == '\n' || c == EOF) {
+            break;
+        }
+    }
+
+    if (selectedCount == 0) {
+        printf("No valid functions selected.\n");
+        return 1;
+    }
+
+    printf("\nCount of elements: %zu\nRange: from %d to %d\n\n", n, min, max);
+
+    // * Creating original array
+    int *original = createRandArr(n, min, max);
+    if (original == NULL) {
+        printf("Memory allocation error!\n");
+        return 1;
+    }
+
+    for (size_t i = 0; i < selectedCount; ++i) {
+        size_t idx = selected[i];
+
+        // * Memory allocation for copy of orig. array
+        int *arr = malloc(n * sizeof(int));
+        if (arr == NULL) {
+            printf("Memory allocation error!\n");
+            free(original);
+            return 1;
+        }
+        // * Copy orig. array
+        memcpy(arr, original, n * sizeof(int));
+
+        clock_t start = clock();
+        sortFuncs[idx](arr, n);
+        clock_t end = clock();
+
+        double t = (double) (end - start) / CLOCKS_PER_SEC;
+
+        bool sorted = isSortedArr(arr, n);
+
+        printf("%s\n", funcNames[idx]);
+        printf("Status: %s\n", sorted ? "OK (sorted)" : "FAILED");
+        printf("Duration: %.6f sec.\n\n", t);
+
+        free(arr);
+    }
+
+    free(original);
+    return 0;
+}

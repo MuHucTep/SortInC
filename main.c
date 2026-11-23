@@ -40,11 +40,11 @@ int main() {
     printf("Enter count of elements in array:\n");
     if (scanf_s("%zu", &size) != 1) {
         printf("Input error!\n");
-        return 1;
+        return 0;
     }
     else if (size < 0) {
         printf("Input error!\n");
-        return 1;
+        return 0;
     }
 
     size_t n = (size_t) size;
@@ -52,18 +52,18 @@ int main() {
     printf("Enter the minimum possible number for number generation in array:\n");
     if (scanf_s("%d", &min) != 1) {
         printf("Input error!\n");
-        return 1;
+        return 0;
     }
 
     printf("Enter the maximum possible number for number generation in array:\n");
     if (scanf_s("%d", &max) != 1) {
         printf("Input error!\n");
-        return 1;
+        return 0;
     }
 
     if (min > max) {
         printf("Error: the minimum number is greater than maximum number.\n");
-        return 1;
+        return 0;
     }
 
     size_t selected[32];
@@ -94,7 +94,7 @@ int main() {
 
     if (selectedCount == 0) {
         printf("No valid functions selected.\n");
-        return 1;
+        return 0;
     }
 
     printf("\nCount of elements: %zu\nRange: from %d to %d\n\n", n, min, max);
@@ -103,7 +103,7 @@ int main() {
     int *original = createRandArr(n, min, max);
     if (original == NULL) {
         printf("Memory allocation error!\n");
-        return 1;
+        return 0;
     }
 
     for (size_t i = 0; i < selectedCount; ++i) {
@@ -114,7 +114,7 @@ int main() {
         if (arr == NULL) {
             printf("Memory allocation error!\n");
             free(original);
-            return 1;
+            return 0;
         }
         // * Copy orig. array
         memcpy(arr, original, n * sizeof(int));
