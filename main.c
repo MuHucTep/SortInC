@@ -34,14 +34,20 @@ int main() {
 
     const size_t funcsCount = sizeof(sortFuncs) / sizeof(sortFuncs[0]);
 
-    size_t n;
+    int size;
     int min, max;
 
     printf("Enter count of elements in array:\n");
-    if (scanf_s("%zu", &n) != 1) {
+    if (scanf_s("%zu", &size) != 1) {
         printf("Input error!\n");
         return 1;
     }
+    else if (size < 0) {
+        printf("Input error!\n");
+        return 1;
+    }
+
+    size_t n = (size_t) size;
 
     printf("Enter the minimum possible number for number generation in array:\n");
     if (scanf_s("%d", &min) != 1) {
