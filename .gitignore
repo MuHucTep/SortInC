@@ -32,6 +32,7 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
+enc_temp_folder/
 
 # Скомпилированные бинарные файлы и отладочная информация
 *.exe
